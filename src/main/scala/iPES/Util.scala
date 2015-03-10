@@ -69,7 +69,7 @@ object Util {
     val corner3 = corner2 - direction * w * lengthRatio
     val corner4 = corner3 + direction.perpendicular * w
 
-    val lineWidth = context.getLineWidth()
+    val lineWidth = context.getLineWidth
 
     context.beginPath()
       .moveTo(a)
