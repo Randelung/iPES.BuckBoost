@@ -72,5 +72,8 @@ object BuckBoost {
     Util.drawDiode(context_bottom, top_middle_right, top_middle_left)
     Util.drawResistor(context_bottom, top_middle_left, bottom_middle_left)
     Util.drawCapacitor(context_bottom, top_middle_right, bottom_middle_right)
+    Util.drawInductor(context_bottom, bottom_corner_right, top_corner_right)
+    Util.drawDCSource(context_bottom, top_corner_left, bottom_corner_left)
+    Util. drawSwitch(context_bottom, top_corner_left, top_middle_left)
   }
 }
