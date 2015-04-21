@@ -49,18 +49,14 @@ case class CustomContext(context: dom.CanvasRenderingContext2D) {
     this
   }
 
-  def getFillStyle = {
-    context.fillStyle
-  }
+  def getFillStyle = context.fillStyle
 
   def setStrokeStyle(style: scala.scalajs.js.Any): CustomContext = {
     context.strokeStyle = style
     this
   }
 
-  def getStrokeStyle = {
-    context.strokeStyle
-  }
+  def getStrokeStyle = context.strokeStyle
 
   def rect(x: Double, y: Double, w: Double, h: Double): CustomContext = {
     context.rect(x, y, w, h)
@@ -97,9 +93,7 @@ case class CustomContext(context: dom.CanvasRenderingContext2D) {
     this
   }
   
-  def getLineWidth = {
-    context.lineWidth
-  }
+  def getLineWidth = context.lineWidth
 
   def fillRect(start: Vector2D, corner: Vector2D): CustomContext = {
     context.fillRect(start.x, start.y, corner.x - start.x, corner.y - start.y)
@@ -121,4 +115,9 @@ case class CustomContext(context: dom.CanvasRenderingContext2D) {
     this
   }
 
+  def clearRect(x: Double, y: Double, w: Double, h: Double) = context.clearRect(x, y, w, h)
+
+  def clearRect(a: Vector2D, b: Vector2D) = context.clearRect(a.x, a.y, b.x - a.x, b.y - a.y)
+
+  def canvas = context.canvas
 }

@@ -1,6 +1,7 @@
 package iPES.BuckBoost
 
-import iPES.{Util, CustomContext, Vector2D}
+import iPES.Parts._
+import iPES._
 
 import scala.scalajs.js.annotation.JSExport
 import org.scalajs.dom
@@ -8,7 +9,7 @@ import dom.document
 import scalatags.JsDom.all._
 
 @JSExport
-object BuckBoost {
+object BuckBoost extends iPESLogic {
   @JSExport
   def main(): Unit = {
     val canvas_width = 400
@@ -48,6 +49,9 @@ object BuckBoost {
 
     val context_bottom = new CustomContext(canvas_bottom.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D])
     val context_top = new CustomContext(canvas_top.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D])
+    val animator = new Animator(context_bottom, context_top)
+    val inputHandler = new InputHandler(context_top, animator)
+
 
     val x_factor = drawing_width / 100
     val y_factor = drawing_height / 100
@@ -63,17 +67,30 @@ object BuckBoost {
     val bottom_middle_right = new Vector2D(65 * x_factor, 95 * y_factor)
 
     context_bottom.setLineWidth(2)
-    context_bottom.beginPath()
-      .moveTo(bottom_corner_left)
-      .lineTo(bottom_corner_right)
-      .moveTo(top_corner_right)
-      .lineTo(top_middle_right)
-      .stroke()
-    Util.drawDiode(context_bottom, top_middle_right, top_middle_left)
-    Util.drawResistor(context_bottom, top_middle_left, bottom_middle_left)
-    Util.drawCapacitor(context_bottom, top_middle_right, bottom_middle_right)
-    Util.drawInductor(context_bottom, bottom_corner_right, top_corner_right)
-    Util.drawDCSource(context_bottom, top_corner_left, bottom_corner_left)
-    Util. drawSwitch(context_bottom, top_corner_left, top_middle_left)
+    val wire1 = new Wire(top_middle_right, top_corner_right)
+    animator register wire1
+    val wire2 = new Wire(bottom_middle_left, bottom_corner_left)
+    animator register wire2
+    val wire3 = new Wire(bottom_middle_right, bottom_middle_left)
+    animator register wire3
+    val wire4 = new Wire(bottom_corner_right, bottom_middle_right)
+    animator register wire4
+    val diode = new Diode(top_middle_right, top_middle_left)
+    animator register diode
+    val resistor = new Resistor(top_middle_left, bottom_middle_left)
+    animator register resistor
+    val capacitor = new Capacitor(top_middle_right, bottom_middle_right)
+    animator register capacitor
+    val inductor = new Inductor(top_corner_right, bottom_corner_right)
+    animator register inductor
+    val dcSource = new DCSource(top_corner_left, bottom_corner_left)
+    animator register dcSource
+    val switch = new Switch(top_corner_left, top_middle_left)
+    animator register switch
+    inputHandler registerArea (switch, top_corner_left - Vector2D(0, 10), top_middle_left + Vector2D(0, 10))
+
+    diode.flowDirection = REVERSE
+
+    animator animate()
   }
 }
