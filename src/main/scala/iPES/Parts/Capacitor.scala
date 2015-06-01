@@ -1,58 +1,39 @@
 package iPES.Parts
 
-import iPES.{Animatable, CustomContext, Vector2D}
+import iPES.Util.{Vector2D, Animatable, CustomContext, Animator}
 
-case class Capacitor(a: Vector2D, b: Vector2D, width: Double = 20, lengthRatio: Double = 0.3) extends Animatable {
-  var flowDirection = FORWARD
+case class Capacitor(start: Vector2D, end: Vector2D, animator: Animator, width: Double = 20, lengthRatio: Double = 0.3) extends Animatable {
+    animator.register(this)
 
-  def draw(context: CustomContext): Unit = {
-    val middle = (b + a) / 2
-    val direction = (b - a) / (b - a).abs
-    var w = width
+    override def draw(context: CustomContext): Unit = {
+        val middle = (end + start) / 2
+        val direction = (end - start) / (end - start).abs
+        var w = width
 
-    if (!((a - b).abs > 1.5 * width * lengthRatio))
-      w = 2d / 3 * (b - a).abs / lengthRatio
+        if (!((start - end).abs > 1.5 * width * lengthRatio))
+            w = 2d / 3 * (end - start).abs / lengthRatio
 
-    val corner1 = middle + direction * w * lengthRatio / 2 + direction.perpendicular * w / 2
-    val corner2 = corner1 - direction.perpendicular * w
-    val corner3 = corner2 - direction * w * lengthRatio
-    val corner4 = corner3 + direction.perpendicular * w
+        val corner1 = middle + direction * w * lengthRatio / 2 + direction.perpendicular * w / 2
+        val corner2 = corner1 - direction.perpendicular * w
+        val corner3 = corner2 - direction * w * lengthRatio
+        val corner4 = corner3 + direction.perpendicular * w
 
-    val lineWidth = context.getLineWidth
+        val lineWidth = context.getLineWidth
 
-    context.beginPath()
-      .moveTo(a)
-      .lineTo(middle - direction * w * lengthRatio / 2)
-      .moveTo(middle + direction * w * lengthRatio / 2)
-      .lineTo(b)
-      .stroke()
-      .beginPath()
-      .setLineWidth(2 * lineWidth)
-      .moveTo(corner1)
-      .lineTo(corner2)
-      .moveTo(corner3)
-      .lineTo(corner4)
-      .stroke()
-      .setLineWidth(lineWidth)
-      .moveTo(b)
-  }
-
-  def animate(context: CustomContext, tick: Int): Unit = {
-    if (flowDirection == STOP)
-      return
-    val style = context.getFillStyle
-    context.setFillStyle("#FFFF00")
-    if (flowDirection == FORWARD) {
-      context.beginPath()
-        .arc(a + (b - a) * tick / 4, 4, 0, 2 * Math.PI)
-        .fill()
-        .setFillStyle(style)
+        context.beginPath()
+            .moveTo(start)
+            .lineTo(middle - direction * w * lengthRatio / 2)
+            .moveTo(middle + direction * w * lengthRatio / 2)
+            .lineTo(end)
+            .stroke()
+            .beginPath()
+            .setLineWidth(2 * lineWidth)
+            .moveTo(corner1)
+            .lineTo(corner2)
+            .moveTo(corner3)
+            .lineTo(corner4)
+            .stroke()
+            .setLineWidth(lineWidth)
+            .moveTo(end)
     }
-    if (flowDirection == REVERSE) {
-      context.beginPath()
-        .arc(a + (b - a) * (4 - tick) / 4, 4, 0, 2 * Math.PI)
-        .fill()
-        .setFillStyle(style)
-    }
-  }
 }

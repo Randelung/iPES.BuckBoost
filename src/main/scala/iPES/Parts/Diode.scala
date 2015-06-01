@@ -1,49 +1,42 @@
 package iPES.Parts
 
-import iPES.{Animatable, CustomContext, Vector2D}
+import iPES.Util._
 
-case class Diode(a: Vector2D, b: Vector2D, width: Double = 20) extends Animatable {
-  var flowDirection = FORWARD
+case class Diode(start: Vector2D, end: Vector2D, animator: Animator, width: Double = 20) extends Animatable {
+    animator.register(this)
 
-  def draw(context: CustomContext): Unit = {
-    val middle = (a + b) / 2
-    val direction = (b - a) / (b - a).abs
-    var w = width
+    override def draw(context: CustomContext): Unit = {
+        val middle = (start + end) / 2
+        val direction = (end - start) / (end - start).abs
+        var w = width
 
-    if (!((a - b).abs > 1.5 * width))
-      w = 2d / 3 * (b - a).abs
+        if (!((start - end).abs > 1.5 * width))
+            w = 2d / 3 * (end - start).abs
 
-    val point = middle + direction * Math.sqrt(3) / 4 * w
-    val start = point + direction.perpendicular * w / 2
-    val end = point - direction.perpendicular * w / 2
-    val corner1 = middle - direction * Math.sqrt(3) / 4 * w + direction.perpendicular * w / 2
-    val corner2 = corner1 - direction.perpendicular * w
+        val point = middle + direction * Math.sqrt(3) / 4 * w
+        val localstart = point + direction.perpendicular * w / 2
+        val localend = point - direction.perpendicular * w / 2
+        val corner1 = middle - direction * Math.sqrt(3) / 4 * w + direction.perpendicular * w / 2
+        val corner2 = corner1 - direction.perpendicular * w
 
-    context.beginPath()
-      .moveTo(a)
-      .lineTo(b)
-      .moveTo(start)
-      .lineTo(end)
-      .stroke()
-      .moveTo(point)
-      .stroke()
-      .lineTo(corner1)
-      .lineTo(corner2)
-      .lineTo(point)
-      .fill()
-      .moveTo(b)
-  }
-
-  def animate(context: CustomContext, tick: Int): Unit = {
-    if (flowDirection == STOP || flowDirection == REVERSE)
-      return
-    val style = context.getFillStyle
-    context.setFillStyle("#FFFF00")
-    if (flowDirection == FORWARD) {
-      context.beginPath()
-        .arc(a + (b - a) * tick / 4, 4, 0, 2 * Math.PI)
-        .fill()
-        .setFillStyle(style)
+        context.beginPath()
+            .moveTo(start)
+            .lineTo(end)
+            .moveTo(localstart)
+            .lineTo(localend)
+            .stroke()
+            .moveTo(point)
+            .stroke()
+            .lineTo(corner1)
+            .lineTo(corner2)
+            .lineTo(point)
+            .fill()
+            .moveTo(end)
     }
-  }
+
+    override def animate(context: CustomContext, tick: Int): Unit = {
+        if (flowDirection == FlowDirection.REVERSE)
+            flowDirection = FlowDirection.STOP
+        super.animate(context, tick)
+    }
 }

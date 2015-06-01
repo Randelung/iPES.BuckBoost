@@ -1,4 +1,4 @@
-package iPES
+package iPES.Util
 
 case class Vector2D(x: Double, y: Double) {
   def +(that: Vector2D) = {

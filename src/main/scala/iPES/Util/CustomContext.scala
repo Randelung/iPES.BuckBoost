@@ -1,4 +1,4 @@
-package iPES
+package iPES.Util
 
 import org.scalajs.dom
 
