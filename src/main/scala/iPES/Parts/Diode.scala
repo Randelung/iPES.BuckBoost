@@ -2,7 +2,9 @@ package iPES.Parts
 
 import iPES.Util._
 
-case class Diode(start: Vector2D, end: Vector2D, animator: Animator, width: Double = 20) extends Animatable {
+case class Diode(start: Vector2D, end: Vector2D, animator: Animator, inputHandler: InputHandler = null, width: Double = 20) extends Animatable {
+    if (inputHandler != null)
+        inputHandler registerArea(this, start - Vector2D(width / 2, width / 2), end + Vector2D(width / 2, width / 2))
     animator.register(this)
 
     override def draw(context: CustomContext): Unit = {

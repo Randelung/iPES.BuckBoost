@@ -1,7 +1,5 @@
 package iPES.BuckBoost
 
-import javafx.css.StyleableObjectProperty
-
 import iPES.Parts._
 import iPES.Util._
 import org.scalajs.dom
@@ -72,43 +70,40 @@ object BuckBoost {
         val capacitor = new Capacitor(top_middle_right, bottom_middle_right, animator)
         val dcSource = new DCSource(top_corner_left, bottom_corner_left, animator)
         val diode = new Diode(top_middle_right, top_middle_left, animator)
-        val inductor = new Inductor(top_corner_right, bottom_corner_right, animator)
-        val resistor = new Resistor(top_middle_left, bottom_middle_left, animator)
+        val inductor = new Inductor(top_middle_left, bottom_middle_left, animator, inputHandler)
+        val resistor = new Resistor(top_corner_right, bottom_corner_right, animator)
         val switch = new Switch(top_corner_left, top_middle_left, animator, inputHandler)
         val wire1 = new Wire(top_middle_right, top_corner_right, animator)
         val wire2 = new Wire(bottom_middle_left, bottom_corner_left, animator)
         val wire3 = new Wire(bottom_middle_right, bottom_middle_left, animator)
         val wire4 = new Wire(bottom_corner_right, bottom_middle_right, animator)
         switch.setOnItemClickListener(new OnItemClickListener {
-            override def onItemClick(clickable: Clickable): Unit = {
-                if (clickable == switch) {
-                    if (switch.closed) {
-                        capacitor.reverseFlow()
-                        dcSource.flowDirection = FlowDirection.STOP
-                        diode.flowDirection = FlowDirection.FORWARD
-                        switch.closed = false
-                        wire2.flowDirection = FlowDirection.STOP
-                        wire3.flowDirection = FlowDirection.REVERSE
-                    }
-                    else {
-                        capacitor.reverseFlow()
-                        dcSource.flowDirection = FlowDirection.FORWARD
-                        diode.flowDirection = FlowDirection.STOP
-                        switch.closed = true
-                        wire2.flowDirection = FlowDirection.FORWARD
-                        wire3.flowDirection = FlowDirection.STOP
-                        wire4.flowDirection = FlowDirection.REVERSE
-                    }
-                    animator.redraw()
+            override def onItemClick(position: Vector2D): Unit = {
+                if (switch.closed) {
+                    capacitor.reverseFlow()
+                    dcSource.flowDirection = FlowDirection.STOP
+                    diode.flowDirection = FlowDirection.FORWARD
+                    switch.closed = false
+                    wire2.flowDirection = FlowDirection.STOP
+                    wire3.flowDirection = FlowDirection.REVERSE
                 }
+                else {
+                    capacitor.reverseFlow()
+                    dcSource.flowDirection = FlowDirection.FORWARD
+                    diode.flowDirection = FlowDirection.STOP
+                    switch.closed = true
+                    wire2.flowDirection = FlowDirection.FORWARD
+                    wire3.flowDirection = FlowDirection.STOP
+                }
+                animator.redraw()
             }
         })
 
         diode.flowDirection = FlowDirection.STOP
+        resistor.flowDirection = FlowDirection.REVERSE
         wire1.flowDirection = FlowDirection.REVERSE
         wire3.flowDirection = FlowDirection.STOP
         wire4.flowDirection = FlowDirection.REVERSE
-        inductor.flowDirection = FlowDirection.REVERSE
 
         animator animate()
     }

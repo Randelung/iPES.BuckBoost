@@ -2,9 +2,10 @@ package iPES.Parts
 
 import iPES.Util._
 
-case class Switch(start: Vector2D, end: Vector2D, animator: Animator, inputHandler: InputHandler, var closed: Boolean = true, length: Double = 20) extends Clickable {
+case class Switch(start: Vector2D, end: Vector2D, animator: Animator, inputHandler: InputHandler = null, var closed: Boolean = true, length: Double = 20) extends Animatable {
+    if (inputHandler != null)
+        inputHandler registerArea(this, start - Vector2D(10, 10), end + Vector2D(10, 10))
     animator.register(this)
-    inputHandler registerArea(this, start - Vector2D(0, 10), end + Vector2D(0, 10))
 
     override def draw(context: CustomContext): Unit = {
         val middle = (end + start) / 2
@@ -47,14 +48,5 @@ case class Switch(start: Vector2D, end: Vector2D, animator: Animator, inputHandl
     override def animate(context: CustomContext, tick: Int): Unit = {
         if (closed)
             super.animate(context, tick)
-    }
-
-    def setOnItemClickListener(onItemClickListener: OnItemClickListener): Unit = {
-        this.onItemClickListener = onItemClickListener
-    }
-
-    def onClick(position: Vector2D): Unit = {
-        if (onItemClickListener != null)
-            onItemClickListener.onItemClick(this)
     }
 }

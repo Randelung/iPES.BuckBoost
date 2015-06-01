@@ -3,11 +3,21 @@ package iPES.Util
 import iPES.Util.FlowDirection.FlowDirection
 
 trait OnItemClickListener {
-    def onItemClick(clickable: Clickable): Unit
+    def onItemClick(position: Vector2D): Unit
 }
 
 trait Animatable {
     var flowDirection : FlowDirection = FlowDirection.FORWARD
+    var onItemClickListener: OnItemClickListener = null
+
+    def setOnItemClickListener(onItemClickListener: OnItemClickListener): Unit = {
+        this.onItemClickListener = onItemClickListener
+    }
+
+    def onClick(position: Vector2D): Unit = {
+        if (onItemClickListener != null)
+            onItemClickListener.onItemClick(position)
+    }
 
     def reverseFlow(): Unit = {
         if (flowDirection == FlowDirection.STOP)
@@ -50,11 +60,4 @@ trait Animatable {
 		}
 		context.setFillStyle(style)
 	}
-}
-
-trait Clickable extends Animatable {
-    var onItemClickListener: OnItemClickListener = null
-    
-    def setOnItemClickListener(onItemClickListener: OnItemClickListener): Unit
-	def onClick(position: Vector2D): Unit
 }

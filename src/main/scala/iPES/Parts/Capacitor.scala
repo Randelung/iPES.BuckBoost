@@ -1,8 +1,10 @@
 package iPES.Parts
 
-import iPES.Util.{Vector2D, Animatable, CustomContext, Animator}
+import iPES.Util._
 
-case class Capacitor(start: Vector2D, end: Vector2D, animator: Animator, width: Double = 20, lengthRatio: Double = 0.3) extends Animatable {
+case class Capacitor(start: Vector2D, end: Vector2D, animator: Animator, inputHandler: InputHandler = null, width: Double = 20, lengthRatio: Double = 0.3) extends Animatable {
+    if (inputHandler != null)
+        inputHandler registerArea(this, start - Vector2D(width / 2, width / 2), end + Vector2D(width / 2, width / 2))
     animator.register(this)
 
     override def draw(context: CustomContext): Unit = {

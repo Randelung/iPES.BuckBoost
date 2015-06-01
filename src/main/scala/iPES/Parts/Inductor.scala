@@ -1,8 +1,10 @@
 package iPES.Parts
 
-import iPES.Util.{Vector2D, Animatable, CustomContext, Animator}
+import iPES.Util._
 
-case class Inductor(start: Vector2D, end: Vector2D, animator: Animator, width: Double = 20, lengthRatio: Double = 2) extends Animatable {
+case class Inductor(start: Vector2D, end: Vector2D, animator: Animator, inputHandler: InputHandler = null, width: Double = 20, lengthRatio: Double = 2) extends Animatable {
+    if (inputHandler != null)
+        inputHandler registerArea(this, start - Vector2D(10, 10), end + Vector2D(10, 10))
     animator.register(this)
 
     override def draw(context: CustomContext): Unit = {
@@ -20,11 +22,10 @@ case class Inductor(start: Vector2D, end: Vector2D, animator: Animator, width: D
 
         context.beginPath()
             .moveTo(start)
-            .lineTo(middle - direction * w * lengthRatio / 2)
-            .moveTo(middle + direction * w * lengthRatio / 2)
             .lineTo(end)
             .stroke()
-            .strokeRect(corner1, corner3)
+            .moveTo(corner1)
+            .fillRect(corner1, corner3)
             .moveTo(end)
     }
 }
