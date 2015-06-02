@@ -5,6 +5,8 @@ import org.scalajs.dom
 class InputHandler(context: CustomContext) {
     var items: Map[Animatable, (Vector2D, Vector2D)] = Map()
 
+    context.canvas.onselectstart = (_: Any) => false
+
     context.canvas.onclick = (e: dom.MouseEvent) => eventHandler(e)
 
     def registerArea(item: Animatable, cornerOne: Vector2D, cornerTwo: Vector2D): Unit = {
@@ -19,11 +21,9 @@ class InputHandler(context: CustomContext) {
                 items += (item -> (Vector2D(cornerTwo.x, cornerOne.y), Vector2D(cornerOne.x, cornerTwo.y)))
             else
                 items += (item -> (cornerTwo, cornerOne))
-
-        println("registered area "+items.get(item))
     }
 
-    def unregisterArea(item: Animatable): Unit = items - item
+    def unregisterArea(item: Animatable): Unit = items -= item
 
     def eventHandler (e: dom.MouseEvent): Unit =
     {
@@ -33,8 +33,10 @@ class InputHandler(context: CustomContext) {
                 && b.x >= e.pageX - context.canvas.offsetLeft
                 && a.y <= e.pageY - context.canvas.offsetTop
                 && b.y >= e.pageY - context.canvas.offsetTop) {
-                item.onClick(Vector2D(e.pageX - context.canvas.offsetLeft, e.pageY - context.canvas.offsetTop) - item.start)
+                item.onClick(Vector2D(e.clientX - context.canvas.getBoundingClientRect().left, e.clientY - context.canvas.getBoundingClientRect().top) - item.start)
                 context.clearRect(a, b)
+                e.stopPropagation()
+                e.preventDefault()
             }
         })
     }
