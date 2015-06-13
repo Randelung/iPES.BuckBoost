@@ -39,6 +39,8 @@ class Graph1(context_bottom: CustomContext, context_top: CustomContext, callback
 
     context_top.canvas.onmouseup = (_: Any) => context_top.canvas.onmousemove = (_: Any) => null
 
+    context_top.canvas.onmouseleave = (_: Any) => context_top.canvas.onmousemove = (_: Any) => null
+
     def insideGraph(vector2D: Vector2D): Boolean = {
         (vector2D.x > corner_bottom_left.x
             && vector2D.x < corner_bottom_right.x
