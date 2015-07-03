@@ -2,8 +2,10 @@ package iPES.BuckBoost
 
 import iPES.Parts._
 import iPES.Util._
+import iPES.Webpage.LanguageSelector
 import org.scalajs.dom
 import org.scalajs.dom.html
+import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js.annotation.JSExport
 import scalatags.JsDom.all._
@@ -11,7 +13,31 @@ import scalatags.JsDom.all._
 @JSExport
 object BuckBoost {
     @JSExport
-    def main(circuit: html.Div, graph1: html.Div, graph2: html.Div): Unit = {
+    def main(): Unit = {
+
+        val derp = new LanguageSelector()
+
+        val circuit = div(
+            margin := 10,
+            width := 400,
+            height := 200).render
+
+        val graph1 = div(
+            margin := 10,
+            width := 400,
+            height := 200).render
+
+        val graph2 = div(
+            margin := 10,
+            width := 400,
+            height := 200).render
+
+        dom.document.body.appendChild(circuit)
+        jQuery("body").append("<div id=\"first line\" />")
+        dom.document.body.appendChild(graph1)
+        jQuery("body").append("<div id=\"second line\" />")
+        dom.document.body.appendChild(graph2)
+        jQuery("body").append("<div id=\"third line\" />")
 
         val canvas_top_circuit = canvas(
             id := "canvas_top_circuit",

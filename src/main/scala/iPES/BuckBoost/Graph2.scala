@@ -50,27 +50,26 @@ class Graph2(context_bottom: CustomContext, context_top: CustomContext, callback
 
     context_bottom.beginPath()
 
-    def insideGraph(vector2D: Vector2D): Boolean = {
-        (vector2D.x > corner_bottom_left.x
-            && vector2D.x < corner_bottom_right.x
-            && vector2D.y > corner_top_left.y
-            && vector2D.y < corner_bottom_left.y)
-    }
-
     while (i < corner_bottom_right.x + 1) {
         context_bottom.lineTo(i, y(i))
         i += 1
     }
     context_bottom.stroke()
 
+    context_top.beginPath()
+        .arc(Vector2D(Math.PI * factor_width + corner_bottom_left.x, y(Math.PI * factor_width + corner_bottom_left.x)), 4, 0, 2 * Math.PI)
+        .fill()
+
     def y(x: Double): Double = {
         corner_bottom_left.y / 2 + corner_top_left.y / 2 - Math.sin((x - corner_bottom_left.x) / factor_width) * factor_height
     }
 
-
-    context_top.beginPath()
-        .arc(Vector2D(0.5 * Math.PI * factor_width + corner_bottom_left.x, y(0.5 * Math.PI * factor_width + corner_bottom_left.x)), 4, 0, 2 * Math.PI)
-        .fill()
+    def insideGraph(vector2D: Vector2D): Boolean = {
+        (vector2D.x > corner_bottom_left.x
+            && vector2D.x < corner_bottom_right.x
+            && vector2D.y > corner_top_left.y
+            && vector2D.y < corner_bottom_left.y)
+    }
 }
 
 trait Graph2Callback {

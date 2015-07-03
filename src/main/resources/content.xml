@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <language lang="en">
+        <content id="first line">
+            This is a first line in English.
+        </content>
+        <content id="second line">
+            <font color="red">
+                This second english line is red.
+            </font>
+        </content>
+        <content id="third line">
+            There is a
+            <a href="http://www.google.com/">link</a>
+            in this paragraph, also it has a
+            <br/>
+            <br/>break.
+        </content>
+    </language>
+
+    <language lang="fr">
+        <content id="first line">
+            Ceci est une première ligne en français.
+        </content>
+        <content id="second line">
+            <font color="red">
+                Cette seconde ligne française est rouge.
+            </font>
+        </content>
+        <content id="third line">
+            Il y a un
+            <a href="http://www.google.fr/">lien</a>
+            dans ce paragraphe, plus il y a un
+            <br/>
+            <br/>break.
+        </content>
+    </language>
+
+    <language lang="de">
+        <content id="first line">
+            Dies ist eine erste Linie auf deutsch.
+        </content>
+        <content id="second line">
+            <font color="red">
+                Diese zweite deutsche Linie ist rot.
+            </font>
+        </content>
+        <content id="third line">
+            Es hat einen
+            <a href="http://www.google.de/">Link</a>
+            in diesem Paragraphen, ausserdem hat er einen
+            <br/>
+            <br/>break.
+        </content>
+    </language>
+</root>
