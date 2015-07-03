@@ -71,9 +71,7 @@ class LanguageSelector(var lang: String = "en") {
                 if (newNode.localName == "content") {
                     val oldNode = dom.document.getElementById(newNode.attributes.getNamedItem("id").value)
                     if (oldNode != null) {
-                        val tmp = dom.document.createElement("div")
-                        tmp.appendChild(newNode)
-                        oldNode.innerHTML = tmp.innerHTML
+                        oldNode.innerHTML = newNode.asInstanceOf[Element].innerHTML
                     } else {
                         println("Couldn't find a node to replace with id " + newNode.attributes.getNamedItem("id").value)
                     }
