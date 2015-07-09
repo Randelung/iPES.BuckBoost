@@ -25,12 +25,12 @@ object BuckBoost {
         val graph1 = div(
             margin := 10,
             width := 400,
-            height := 200).render
+            height := 250).render
 
         val graph2 = div(
             margin := 10,
             width := 400,
-            height := 200).render
+            height := 250).render
 
         dom.document.body.appendChild(circuit)
         jQuery("body").append("<div id=\"first line\" />")
@@ -51,6 +51,14 @@ object BuckBoost {
             width := circuit.style.width,
             height := circuit.style.height
         )("Get a proper browser!").render
+
+        canvas_top_circuit.onselectstart = (_: Any) => false
+
+        canvas_top_circuit.onmousedown = (_: Any) => dom.document.onselectstart = (_: Any) => false
+
+        canvas_top_circuit.onmouseup = (_: Any) => dom.document.onselectstart = (_: Any) => null
+
+        dom.document.onmouseup = (_: Any) => dom.document.onselectstart = (_: Any) => null
 
         circuit.appendChild(canvas_bottom_circuit)
         circuit.appendChild(canvas_top_circuit)

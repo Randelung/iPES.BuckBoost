@@ -38,11 +38,11 @@
 
     <language lang="de">
         <content id="first line">
-            Dies ist eine erste Linie auf deutsch.
+            Dies ist eine erste Zeile auf deutsch.
         </content>
         <content id="second line">
             <font color="red">
-                Diese zweite deutsche Linie ist rot.
+                Diese zweite deutsche Zeile ist rot.
             </font>
         </content>
         <content id="third line">
