@@ -8,9 +8,11 @@ import scalatags.JsDom.all._
 
 class LanguageSelector(div: HTMLDivElement) {
 
-    div.innerHTML = "Language: "
-
     private val xhr = new XMLHttpRequest()
+    private var langSelector = select().render
+    private var contentFile: Document = _
+
+    div.innerHTML = "Language: "
 
     div.appendChild(langSelector)
 
@@ -20,8 +22,6 @@ class LanguageSelector(div: HTMLDivElement) {
         dom.document.cookie = "lang=" + langSelector.value + "; expires=" + d.toUTCString()
         reloadContent()
     }
-    private var langSelector = select().render
-    private var contentFile: Document = _
 
     xhr.onreadystatechange = (e: Event) => {
         if (xhr.readyState == 4 && xhr.status == 200) {
