@@ -6,61 +6,52 @@ import org.scalajs.dom.raw._
 import scala.scalajs.js.Date
 import scalatags.JsDom.all._
 
-class LanguageSelector(var lang: String = "en") {
+class LanguageSelector(div: HTMLDivElement) {
 
-    val container = dom.document.createElement("div")
-    container.setAttribute("position", "absolute")
-    container.innerHTML = "Language: "
+    div.innerHTML = "Language: "
 
-    val langSelector = select(
-        option(value := "en")("English"),
-        option(value := "fr")("Français"),
-        option(value := "de")("Deutsch")
-    ).render
+    private val xhr = new XMLHttpRequest()
 
-    if (dom.document.cookie.contains("lang=")) {
-        val cookies = dom.document.cookie.split(';')
-        for (i <- cookies) {
-            var cookie = i
-            while (cookie.charAt(0) == ' ') cookie = cookie.substring(1)
-            if (cookie.indexOf("lang=") == 0) {
-                val temp = cookie.substring(5, cookie.length)
-                if (langSelector.options.map(element => element.value).contains(temp))
-                    lang = temp
-            }
-        }
-    }
-
-    langSelector.value = lang
+    div.appendChild(langSelector)
 
     langSelector.onchange = (e: Event) => {
-        lang = langSelector.value
         var d = new Date()
         d.setTime(d.getTime() + 604800000)
-        dom.document.cookie = "lang=" + lang + "; expires=" + d.toUTCString()
+        dom.document.cookie = "lang=" + langSelector.value + "; expires=" + d.toUTCString()
         reloadContent()
     }
-
-    container.appendChild(langSelector)
-    dom.document.body.appendChild(container)
-
-    val xhr = new XMLHttpRequest()
-    var contentFile: Document = _
+    private var langSelector = select().render
+    private var contentFile: Document = _
 
     xhr.onreadystatechange = (e: Event) => {
         if (xhr.readyState == 4 && xhr.status == 200) {
             contentFile = xhr.responseXML
+            addOptions()
+
+            if (dom.document.cookie.contains("lang=")) {
+                val cookies = dom.document.cookie.split(';')
+                for (i <- cookies) {
+                    var cookie = i
+                    while (cookie.charAt(0) == ' ') cookie = cookie.substring(1)
+                    if (cookie.indexOf("lang=") == 0) {
+                        val temp = cookie.substring(5, cookie.length)
+                        if (langSelector.options.map(element => element.value).contains(temp))
+                            langSelector.value = temp
+                    }
+                }
+            }
+
             reloadContent()
         }
     }
     xhr.open("GET", "content.xml", async = true)
     xhr.send()
 
-    def reloadContent() = {
+    def reloadContent(): Unit = {
         val content = contentFile.getElementsByTagName("language")
         var node: Node = null
         for (i <- 0 to content.length - 1) {
-            if (content.item(i).attributes.getNamedItem("lang").value == lang)
+            if (content.item(i).attributes.getNamedItem("lang").value == langSelector.value)
                 node = content.item(i)
         }
 
@@ -77,6 +68,16 @@ class LanguageSelector(var lang: String = "en") {
                     }
                 }
             }
+        }
+    }
+
+    private def addOptions(): Unit = {
+        val content = contentFile.getElementsByTagName("language")
+        for (index <- 0 to content.length - 1) {
+            val optionsItem = dom.document.createElement("option").asInstanceOf[HTMLOptionElement]
+            optionsItem.text = content.item(index).attributes.getNamedItem("humanReadable").value
+            optionsItem.value = content.item(index).attributes.getNamedItem("lang").value
+            langSelector.add(optionsItem)
         }
     }
 }

@@ -1,56 +1,46 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-    <language lang="en">
+    <language lang="en" humanReadable="English">
         <content id="first line">
-            This is a first line in English.
+            The graph below shows the time behavior of the switch gate signal, and of characteristic currents and
+            voltages of the buck-boost converter. Drag the vertical (red) time-marker line with the mouse. The according
+            switching states are shown in the animated circuit above. The (orange) gate-signal cannot be dragged with
+            the mouse because the duty cycle is set by the output voltage controller.
         </content>
         <content id="second line">
-            <font color="red">
-                This second english line is red.
-            </font>
-        </content>
-        <content id="third line">
-            There is a
-            <a href="http://www.google.com/">link</a>
-            in this paragraph, also it has a
+            Normalized current: i= Iout,avg/(U2/(2*L*f))
             <br/>
-            <br/>break.
+            <br/>
+            The right-hand applet shows a diagram of the duty cycle in dependency of the normalized load. To change the
+            constant voltage ratio drag the (red) curve with the mouse. Change the actual load by dragging the red point
+            with the mouse. The green line defines the borderline between continuous and discontinuous inductor current
+            mode.
+            <br/>
+            <b>Remark:</b>
+            Here the output voltage is kept constant by the output voltage controller. Therefore,
+            changing the voltage transfer ratio u2/u1 does change the input voltage.
         </content>
     </language>
 
-    <language lang="fr">
+    <language lang="de" humanReadable="Deutsch">
         <content id="first line">
-            Ceci est une première ligne en français.
+            Der folgende Graph zeigt das Zeitverhältnis des Switch Gate-Signals und der charakteristischen Ströme und
+            Spannungen des Buck Boost-Converters. Ziehe den vertikalen (roten) Marker mit der Maus. The entsprechenden
+            Schalterzustände werden im animierten Schaltkreis oberhalb gezeigt. Das (orange) Gate-Signal kann nicht mit
+            der Maus verschoben werden, da das Tastverhältnis vom Ausgangsspannungs-Controller gesetzt wird.
         </content>
         <content id="second line">
-            <font color="red">
-                Cette seconde ligne française est rouge.
-            </font>
-        </content>
-        <content id="third line">
-            Il y a un
-            <a href="http://www.google.fr/">lien</a>
-            dans ce paragraphe, plus il y a un
+            Normalisierter Strom: i = Iout,avg/(U2/(2*L*f))
             <br/>
-            <br/>break.
-        </content>
-    </language>
-
-    <language lang="de">
-        <content id="first line">
-            Dies ist eine erste Zeile auf deutsch.
-        </content>
-        <content id="second line">
-            <font color="red">
-                Diese zweite deutsche Zeile ist rot.
-            </font>
-        </content>
-        <content id="third line">
-            Es hat einen
-            <a href="http://www.google.de/">Link</a>
-            in diesem Paragraphen, ausserdem hat er einen
             <br/>
-            <br/>break.
+            Der unterste Graph zeigt ein Diagramm des Tastverhältnisses in Abhängigkeit der normalisierten Last. Ziehe
+            die (rote) Linie mit der Maus, um das konstante Spannungsverhältnis zu ändern. Ziehe den roten Punkt, um die
+            effektive Last zu ändern. Die grüne Linie definiert die Grenze zwischen kontinuierlichem und
+            diskontinuierlichem Spulenstrom-Modus.
+            <br/>
+            <b>Anmerkung:</b>
+            Hier wird die Ausgangsspannung durch den Ausgangsspannungs-Controller konstant gehalten.
+            Deshalb ändert eine Änderung am Spannungstransferverhältnis u2/u1 die Eingangsspannung.
         </content>
     </language>
 </root>

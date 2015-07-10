@@ -5,6 +5,7 @@ import iPES.Util._
 import iPES.Webpage.LanguageSelector
 import org.scalajs.dom
 import org.scalajs.dom.html
+import org.scalajs.dom.raw.HTMLDivElement
 import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js.annotation.JSExport
@@ -15,7 +16,9 @@ object BuckBoost {
     @JSExport
     def main(): Unit = {
 
-        val derp = new LanguageSelector()
+        val languageSelectorDiv = dom.document.createElement("div").asInstanceOf[HTMLDivElement]
+        new LanguageSelector(languageSelectorDiv)
+        dom.document.body.appendChild(languageSelectorDiv)
 
         val circuit = div(
             margin := 10,
@@ -37,7 +40,6 @@ object BuckBoost {
         dom.document.body.appendChild(graph1)
         jQuery("body").append("<div id=\"second line\" />")
         dom.document.body.appendChild(graph2)
-        jQuery("body").append("<div id=\"third line\" />")
 
         val canvas_top_circuit = canvas(
             id := "canvas_top_circuit",
