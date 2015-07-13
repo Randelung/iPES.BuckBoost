@@ -201,8 +201,8 @@ object BuckBoost {
         val context_top = new CustomContext(canvas_top_graph1.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D])
 
         new Graph2(context_bottom, context_top, new Graph2Callback {
-            override def onClick(modifier: Double): Unit = {
-                graph.redraw_graph(modifier)
+            override def onClick(modifier: Vector2D): Unit = {
+                graph.redraw_graph(modifier.x)
             }
         })
     }

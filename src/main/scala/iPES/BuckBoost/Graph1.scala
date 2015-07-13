@@ -82,13 +82,6 @@ class Graph1(context_bottom: CustomContext, context_top: CustomContext, callback
     redraw_graph(1)
     redraw_line(30 + corner_bottom_left.x)
 
-    def insideGraph(vector2D: Vector2D): Boolean = {
-        (vector2D.x > corner_bottom_left.x
-            && vector2D.x < corner_bottom_right.x
-            && vector2D.y > corner_top_left.y
-            && vector2D.y < corner_bottom_left.y)
-    }
-
     def redraw_graph(modifier: Double): Unit = {
 
         var strokeStyle = context_bottom.getStrokeStyle
@@ -216,7 +209,14 @@ class Graph1(context_bottom: CustomContext, context_top: CustomContext, callback
         context_bottom.fillText("2Tp", corner_bottom_right + Vector2D(-15, 18))
     }
 
-    def redraw_line(position: Double): Unit = {
+    private def insideGraph(vector2D: Vector2D): Boolean = {
+        (vector2D.x > corner_bottom_left.x
+            && vector2D.x < corner_bottom_right.x
+            && vector2D.y > corner_top_left.y
+            && vector2D.y < corner_bottom_left.y)
+    }
+
+    private def redraw_line(position: Double): Unit = {
         context_top.clearRect(0, 0, context_bottom.canvas.width, context_bottom.canvas.height)
         context_top.beginPath()
             .moveTo(position, corner_top_left.y)
