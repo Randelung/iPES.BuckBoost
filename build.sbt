@@ -4,7 +4,7 @@ enablePlugins(ScalaJSPlugin)
 
 workbenchSettings
 
-name := "Example"
+name := "BuckBoost Converter"
 
 version := "0.1-SNAPSHOT"
 

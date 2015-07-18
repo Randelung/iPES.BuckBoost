@@ -23,7 +23,6 @@ class Graph1(context_bottom: CustomContext, context_top: CustomContext, callback
     private val offset_height_2 = (corner_bottom_left.y - corner_top_left.y) / 2
     private val offset_height_3 = offset_height_0
     private val offset_height_4 = offset_height_2
-
     private val dt = 500e-9
     private val L = 50e-6
     private val C = 20e-6
@@ -31,11 +30,12 @@ class Graph1(context_bottom: CustomContext, context_top: CustomContext, callback
     private val uOUTsoll = 40
     private val punkte = ((corner_bottom_right.x - corner_bottom_left.x) / 2).asInstanceOf[Int]
     private val f = 1 / (dt * punkte)
-    private val R = 2 * f * L / 0.75
-
-    private val h1 = 0.25 + L / dt * (C / dt + 0.5 / R)
-    private val h2 = -0.25 + L / dt * (C / dt - 0.5 / R)
-    private val h3 = -0.25 + L / dt * (C / dt + 0.5 / R)
+    private val graph_values = new Array[Array[Double]](5)
+    private var onOffBorder: Double = _
+    private var currentRedbarX: Double = _
+    private var R: Double = _
+    private var h1: Double = _
+    private var h2: Double = _
 
     context_top.canvas.onselectstart = (_: Any) => false
 
@@ -47,8 +47,8 @@ class Graph1(context_bottom: CustomContext, context_top: CustomContext, callback
                 val temp = Vector2D(e.clientX - context_top.canvas.getBoundingClientRect().left, e.clientY - context_top.canvas.getBoundingClientRect().top)
                 if (insideGraph(temp)) {
                     redraw_line(temp.x)
-                    if ((temp.x > corner_bottom_left.x && temp.x < (corner_top_right.x - corner_top_left.x) / 4 + corner_bottom_left.x)
-                        || (temp.x > (corner_top_right.x - corner_top_left.x) / 2 + corner_bottom_left.x && temp.x < 3 * (corner_top_right.x - corner_top_left.x) / 4 + corner_bottom_left.x))
+                    if ((temp.x > corner_bottom_left.x && temp.x < (corner_top_right.x - corner_top_left.x) / 2 * onOffBorder + corner_bottom_left.x)
+                        || (temp.x > (corner_top_right.x - corner_top_left.x) / 2 + corner_bottom_left.x && temp.x < (corner_top_right.x - corner_top_left.x) / 2 + (corner_top_right.x - corner_top_left.x) / 2 * onOffBorder + corner_bottom_left.x))
                         callback.onClick(closed = true)
                     else
                         callback.onClick(closed = false)
@@ -71,21 +71,28 @@ class Graph1(context_bottom: CustomContext, context_top: CustomContext, callback
     context_top.setLineWidth(2)
     context_top.setStrokeStyle("#ff0000")
     context_bottom.context.font = "20px Arial"
-
-    private val graph_values = new Array[Array[Double]](5)
+    private var h3: Double = _
     graph_values(0) = new Array[Double](punkte)
     graph_values(1) = new Array[Double](punkte)
     graph_values(2) = new Array[Double](punkte)
     graph_values(3) = new Array[Double](punkte)
     graph_values(4) = new Array[Double](punkte)
 
-    redraw_graph(1)
     redraw_line(30 + corner_bottom_left.x)
+    redraw_graph(0.75, 0.5)
 
-    def redraw_graph(modifier: Double): Unit = {
+    def redraw_graph(i0: Double, yNorm: Double): Unit = {
 
-        var strokeStyle = context_bottom.getStrokeStyle
-        var fillStyle = context_bottom.getFillStyle
+        onOffBorder = yNorm
+
+        R = 2 * f * L / i0
+
+        h1 = 0.25 + L / dt * (C / dt + 0.5 / R)
+        h2 = -0.25 + L / dt * (C / dt - 0.5 / R)
+        h3 = -0.25 + L / dt * (C / dt + 0.5 / R)
+
+        val strokeStyle = context_bottom.getStrokeStyle
+        val fillStyle = context_bottom.getFillStyle
 
         context_bottom.clearRect(0, 0, context_bottom.canvas.width, context_bottom.canvas.height)
 
@@ -99,7 +106,7 @@ class Graph1(context_bottom: CustomContext, context_top: CustomContext, callback
         val offset_right = corner_bottom_right.x.asInstanceOf[Int]
         for (_ <- 0 to 4) {
             var i = 1
-            while (i < (offset_right - offset_left) / 4) {
+            while (i < (offset_right - offset_left) / 2 * yNorm) {
                 graph_values(0)(i) = 1
                 graph_values(1)(i) = graph_values(1)(i - 1) + dt / L * uIN
                 graph_values(2)(i) = graph_values(2)(i - 1) * (C / dt - 0.5 * R) / (C / dt + 0.5 / R)
@@ -207,13 +214,13 @@ class Graph1(context_bottom: CustomContext, context_top: CustomContext, callback
         context_bottom.fillText("0", corner_bottom_left + Vector2D(-5, 18))
         context_bottom.fillText("Tp", middle_bottom + Vector2D(-10, 18))
         context_bottom.fillText("2Tp", corner_bottom_right + Vector2D(-15, 18))
-    }
 
-    private def insideGraph(vector2D: Vector2D): Boolean = {
-        (vector2D.x > corner_bottom_left.x
-            && vector2D.x < corner_bottom_right.x
-            && vector2D.y > corner_top_left.y
-            && vector2D.y < corner_bottom_left.y)
+        redraw_line(currentRedbarX)
+        if ((currentRedbarX > corner_bottom_left.x && currentRedbarX < (corner_top_right.x - corner_top_left.x) / 2 * onOffBorder + corner_bottom_left.x)
+            || (currentRedbarX > (corner_top_right.x - corner_top_left.x) / 2 + corner_bottom_left.x && currentRedbarX < (corner_top_right.x - corner_top_left.x) / 2 + (corner_top_right.x - corner_top_left.x) / 2 * onOffBorder + corner_bottom_left.x))
+            callback.onClick(closed = true)
+        else
+            callback.onClick(closed = false)
     }
 
     private def redraw_line(position: Double): Unit = {
@@ -222,6 +229,14 @@ class Graph1(context_bottom: CustomContext, context_top: CustomContext, callback
             .moveTo(position, corner_top_left.y)
             .lineTo(position, corner_bottom_left.y)
             .stroke()
+        currentRedbarX = position
+    }
+
+    private def insideGraph(vector2D: Vector2D): Boolean = {
+        (vector2D.x > corner_bottom_left.x
+            && vector2D.x < corner_bottom_right.x
+            && vector2D.y > corner_top_left.y
+            && vector2D.y < corner_bottom_left.y)
     }
 }
 

@@ -21,17 +21,29 @@ object BuckBoost {
         dom.document.body.appendChild(languageSelectorDiv)
 
         val circuit = div(
-            margin := 10,
+            display := "block",
+            marginLeft := "auto",
+            marginRight := "auto",
+            marginTop := 10,
+            marginBottom := 10,
             width := 400,
             height := 200).render
 
         val graph1 = div(
-            margin := 10,
+            display := "block",
+            marginLeft := "auto",
+            marginRight := "auto",
+            marginTop := 10,
+            marginBottom := 10,
             width := 400,
             height := 250).render
 
         val graph2 = div(
-            margin := 10,
+            display := "block",
+            marginLeft := "auto",
+            marginRight := "auto",
+            marginTop := 10,
+            marginBottom := 10,
             width := 400,
             height := 250).render
 
@@ -202,7 +214,7 @@ object BuckBoost {
 
         new Graph2(context_bottom, context_top, new Graph2Callback {
             override def onClick(modifier: Vector2D): Unit = {
-                graph.redraw_graph(modifier.x)
+                graph.redraw_graph(modifier.x, modifier.y)
             }
         })
     }

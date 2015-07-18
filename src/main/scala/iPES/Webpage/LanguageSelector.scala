@@ -3,6 +3,7 @@ package iPES.Webpage
 import org.scalajs.dom
 import org.scalajs.dom.raw._
 
+import scala.scalajs.js
 import scala.scalajs.js.Date
 import scalatags.JsDom.all._
 
@@ -12,7 +13,7 @@ class LanguageSelector(div: HTMLDivElement) {
     private var langSelector = select().render
     private var contentFile: Document = _
 
-    div.innerHTML = "Language: "
+    div.innerHTML = "<div id=\"language\" style=\"display: inline\">Language: </div>"
 
     div.appendChild(langSelector)
 
@@ -69,6 +70,8 @@ class LanguageSelector(div: HTMLDivElement) {
                 }
             }
         }
+
+        MathJaxHub.Queue(js.Array("Typeset", MathJaxHub))
     }
 
     private def addOptions(): Unit = {

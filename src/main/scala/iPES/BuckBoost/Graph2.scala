@@ -6,9 +6,9 @@ import org.scalajs.dom.raw.MouseEvent
 
 class Graph2(context_bottom: CustomContext, context_top: CustomContext, callback: Graph2Callback) {
     private val corner_top_left = Vector2D(0.1 * context_bottom.canvas.width, 0.1 * context_bottom.canvas.height)
-    private val corner_top_right = Vector2D(0.95 * context_bottom.canvas.width, 0.1 * context_bottom.canvas.height)
+    private val corner_top_right = Vector2D(0.9 * context_bottom.canvas.width, 0.1 * context_bottom.canvas.height)
     private val corner_bottom_left = Vector2D(0.1 * context_bottom.canvas.width, 0.9 * context_bottom.canvas.height)
-    private val corner_bottom_right = Vector2D(0.95 * context_bottom.canvas.width, 0.9 * context_bottom.canvas.height)
+    private val corner_bottom_right = Vector2D(0.9 * context_bottom.canvas.width, 0.9 * context_bottom.canvas.height)
     private val factor_height = (corner_bottom_left - corner_top_left).y
     private val factor_width = (corner_top_right - corner_top_left).x / 1.5
 

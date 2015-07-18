@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
     <language lang="en" humanReadable="English">
+        <content id="language">Language:</content>
         <content id="first line">
             The graph below shows the time behavior of the switch gate signal, and of characteristic currents and
             voltages of the buck-boost converter. Drag the vertical (red) time-marker line with the mouse. The according
@@ -8,7 +9,7 @@
             the mouse because the duty cycle is set by the output voltage controller.
         </content>
         <content id="second line">
-            Normalized current: i= Iout,avg/(U2/(2*L*f))
+            Normalized current: \(i = I_{out,avg}\frac{2Lf}{U_2}\)
             <br/>
             <br/>
             The right-hand applet shows a diagram of the duty cycle in dependency of the normalized load. To change the
@@ -23,6 +24,7 @@
     </language>
 
     <language lang="de" humanReadable="Deutsch">
+        <content id="language">Sprache:</content>
         <content id="first line">
             Der folgende Graph zeigt das Zeitverhältnis des Switch Gate-Signals und der charakteristischen Ströme und
             Spannungen des Buck Boost-Converters. Ziehe den vertikalen (roten) Marker mit der Maus. The entsprechenden
@@ -30,7 +32,7 @@
             der Maus verschoben werden, da das Tastverhältnis vom Ausgangsspannungs-Controller gesetzt wird.
         </content>
         <content id="second line">
-            Normalisierter Strom: i = Iout,avg/(U2/(2*L*f))
+            Normalisierter Strom: \(i = I_{out,avg}\frac{2Lf}{U_2}\)
             <br/>
             <br/>
             Der unterste Graph zeigt ein Diagramm des Tastverhältnisses in Abhängigkeit der normalisierten Last. Ziehe
