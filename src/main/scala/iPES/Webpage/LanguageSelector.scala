@@ -9,16 +9,17 @@ import scalatags.JsDom.all._
 
 class LanguageSelector(div: HTMLDivElement) {
 
+    val languageTag = dom.document.createElement("span")
     private val xhr = new XMLHttpRequest()
-    private var langSelector = select().render
+    private val langSelector = select().render
     private var contentFile: Document = _
-
-    div.innerHTML = "<div id=\"language\" style=\"display: inline\">Language: </div>"
+    languageTag.setAttribute("id", "language")
+    div.appendChild(languageTag)
 
     div.appendChild(langSelector)
 
     langSelector.onchange = (e: Event) => {
-        var d = new Date()
+        val d = new Date()
         d.setTime(d.getTime() + 604800000)
         dom.document.cookie = "lang=" + langSelector.value + "; expires=" + d.toUTCString()
         reloadContent()
