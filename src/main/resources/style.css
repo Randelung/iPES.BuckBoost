@@ -13,6 +13,24 @@ body {
 
 canvas {
 	border-width: 2px;
-	border-style: solid;
+	border-style: outset;
 	border-color: #7BCCCC;
+}
+
+#qna {
+	border-style: outset;
+	border-width: 2px;
+	border-color: #7BCCCC;
+}
+
+div.wrong-answer {
+	padding: 3px;
+	background-color: red;
+	display: none;
+}
+
+div.right-answer {
+	padding: 3px;
+	background-color: lightgreen;
+	display: none;
 }

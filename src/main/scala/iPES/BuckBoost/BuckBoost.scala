@@ -5,7 +5,7 @@ import iPES.Util._
 import iPES.Webpage.LanguageSelector
 import org.scalajs.dom
 import org.scalajs.dom.html
-import org.scalajs.dom.raw.HTMLDivElement
+import org.scalajs.dom.raw.{HTMLDivElement, HTMLInputElement}
 import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js.annotation.JSExport
@@ -20,7 +20,7 @@ object BuckBoost {
         new LanguageSelector(languageSelectorDiv)
         dom.document.body.appendChild(languageSelectorDiv)
 
-        val circuit = div(
+        val circuitDiv = div(
             display := "block",
             marginLeft := "auto",
             marginRight := "auto",
@@ -29,7 +29,7 @@ object BuckBoost {
             width := 400,
             height := 200).render
 
-        val graph1 = div(
+        val graph1Div = div(
             display := "block",
             marginLeft := "auto",
             marginRight := "auto",
@@ -38,7 +38,7 @@ object BuckBoost {
             width := 400,
             height := 250).render
 
-        val graph2 = div(
+        val graph2Div = div(
             display := "block",
             marginLeft := "auto",
             marginRight := "auto",
@@ -47,23 +47,27 @@ object BuckBoost {
             width := 400,
             height := 250).render
 
-        dom.document.body.appendChild(circuit)
+        dom.document.body.appendChild(circuitDiv)
         jQuery("body").append("<div id=\"first line\" />")
-        dom.document.body.appendChild(graph1)
+        dom.document.body.appendChild(graph1Div)
         jQuery("body").append("<div id=\"second line\" />")
-        dom.document.body.appendChild(graph2)
+        dom.document.body.appendChild(graph2Div)
+
+        val qnaDiv = dom.document.createElement("div").asInstanceOf[HTMLDivElement]
+        qnaDiv.setAttribute("id", "qna")
+        dom.document.body.appendChild(qnaDiv)
 
         val canvas_top_circuit = canvas(
             id := "canvas_top_circuit",
             position := "absolute",
-            width := circuit.style.width,
-            height := circuit.style.height
+            width := circuitDiv.style.width,
+            height := circuitDiv.style.height
         )("Get a proper browser!").render
         val canvas_bottom_circuit = canvas(
             id := "canvas_bottom_circuit",
             position := "absolute",
-            width := circuit.style.width,
-            height := circuit.style.height
+            width := circuitDiv.style.width,
+            height := circuitDiv.style.height
         )("Get a proper browser!").render
 
         canvas_top_circuit.onselectstart = (_: Any) => false
@@ -74,13 +78,13 @@ object BuckBoost {
 
         dom.document.onmouseup = (_: Any) => dom.document.onselectstart = (_: Any) => null
 
-        circuit.appendChild(canvas_bottom_circuit)
-        circuit.appendChild(canvas_top_circuit)
+        circuitDiv.appendChild(canvas_bottom_circuit)
+        circuitDiv.appendChild(canvas_top_circuit)
 
-        val drawing_width = circuit.style.width.dropRight(2).toInt // set coordinate system; width attribute only applies to <img>
+        val drawing_width = circuitDiv.style.width.dropRight(2).toInt // set coordinate system; width attribute only applies to <img>
         canvas_top_circuit.width = drawing_width
         canvas_bottom_circuit.width = drawing_width
-        val drawing_height = circuit.style.height.dropRight(2).toInt
+        val drawing_height = circuitDiv.style.height.dropRight(2).toInt
         canvas_top_circuit.height = drawing_height
         canvas_bottom_circuit.height = drawing_height
 
@@ -143,10 +147,11 @@ object BuckBoost {
 
         animator animate()
 
-        setup_graph1(graph1, graph2, switch)
+        val graph1 = setup_graph1(graph1Div, switch)
+        val graph2 = setup_graph2(graph2Div, graph1)
     }
 
-    def setup_graph1(div1: html.Div, div2: html.Div, switch: Switch): Unit = {
+    def setup_graph1(div1: html.Div, switch: Switch) = {
 
         val canvas_top_graph1 = canvas(
             id := "canvas_top_graph1",
@@ -174,17 +179,15 @@ object BuckBoost {
         val context_bottom = new CustomContext(canvas_bottom_graph1.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D])
         val context_top = new CustomContext(canvas_top_graph1.getContext("2d").asInstanceOf[dom.CanvasRenderingContext2D])
 
-        val graph = new Graph1(context_bottom, context_top, new Graph1Callback {
+        new Graph1(context_bottom, context_top, new Graph1Callback {
             override def onClick(closed: Boolean): Unit = {
                 if (closed != switch.closed)
                     switch.onClick(null)
             }
         })
-
-        setup_graph2(div2, graph)
     }
 
-    def setup_graph2(div: html.Div, graph: Graph1): Unit = {
+    def setup_graph2(div: html.Div, graph: Graph1) = {
 
         val canvas_top_graph1 = canvas(
             id := "canvas_top_graph2",
@@ -217,5 +220,21 @@ object BuckBoost {
                 graph.redraw_graph(modifier.x, modifier.y)
             }
         })
+    }
+
+    @JSExport
+    def checkAnswer1() = {
+        if (dom.document.getElementById("answer4").asInstanceOf[HTMLInputElement].checked) {
+            var feedback = dom.document.getElementById("feedback1right").asInstanceOf[HTMLDivElement]
+            feedback.style.setProperty("display", "initial")
+            feedback = dom.document.getElementById("feedback1wrong").asInstanceOf[HTMLDivElement]
+            feedback.style.setProperty("display", "none")
+        }
+        else {
+            var feedback = dom.document.getElementById("feedback1right").asInstanceOf[HTMLDivElement]
+            feedback.style.setProperty("display", "none")
+            feedback = dom.document.getElementById("feedback1wrong").asInstanceOf[HTMLDivElement]
+            feedback.style.setProperty("display", "initial")
+        }
     }
 }
