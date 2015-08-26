@@ -34,3 +34,18 @@ div.right-answer {
 	background-color: lightgreen;
 	display: none;
 }
+
+#Circuit, #Graph1, #Graph2 {
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	width: 400px;
+}
+
+#Circuit {
+	height: 200px;
+}
+
+#Graph1, #Graph2 {
+	height: 250px;
+}

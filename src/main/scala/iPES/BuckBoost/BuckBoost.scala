@@ -2,11 +2,9 @@ package iPES.BuckBoost
 
 import iPES.Parts._
 import iPES.Util._
-import iPES.Webpage.LanguageSelector
 import org.scalajs.dom
 import org.scalajs.dom.html
 import org.scalajs.dom.raw.{HTMLDivElement, HTMLInputElement}
-import org.scalajs.jquery.jQuery
 
 import scala.scalajs.js.annotation.JSExport
 import scalatags.JsDom.all._
@@ -14,13 +12,9 @@ import scalatags.JsDom.all._
 @JSExport
 object BuckBoost {
     @JSExport
-    def main(): Unit = {
+    def main(circuitDiv: HTMLDivElement, graph1Div: HTMLDivElement, graph2Div: HTMLDivElement): Unit = {
 
-        val languageSelectorDiv = dom.document.createElement("div").asInstanceOf[HTMLDivElement]
-        new LanguageSelector(languageSelectorDiv)
-        dom.document.body.appendChild(languageSelectorDiv)
-
-        val circuitDiv = div(
+        /*val circuitDiv = div(
             display := "block",
             marginLeft := "auto",
             marginRight := "auto",
@@ -55,21 +49,22 @@ object BuckBoost {
 
         val qnaDiv = dom.document.createElement("div").asInstanceOf[HTMLDivElement]
         qnaDiv.setAttribute("id", "qna")
-        dom.document.body.appendChild(qnaDiv)
+        dom.document.body.appendChild(qnaDiv)*/
 
+        val computedStyle = dom.window.getComputedStyle(circuitDiv)
         val canvas_top_circuit = canvas(
             id := "canvas_top_circuit",
             position := "absolute",
-            width := circuitDiv.style.width,
-            height := circuitDiv.style.height
+            width := computedStyle.width,
+            height := computedStyle.height
         )("Get a proper browser!").render
         val canvas_bottom_circuit = canvas(
             id := "canvas_bottom_circuit",
             position := "absolute",
-            width := circuitDiv.style.width,
-            height := circuitDiv.style.height
+            width := computedStyle.width,
+            height := computedStyle.height
         )("Get a proper browser!").render
-
+        println("debug marker 1")
         canvas_top_circuit.onselectstart = (_: Any) => false
 
         canvas_top_circuit.onmousedown = (_: Any) => dom.document.onselectstart = (_: Any) => false
@@ -80,11 +75,11 @@ object BuckBoost {
 
         circuitDiv.appendChild(canvas_bottom_circuit)
         circuitDiv.appendChild(canvas_top_circuit)
-
-        val drawing_width = circuitDiv.style.width.dropRight(2).toInt // set coordinate system; width attribute only applies to <img>
+        println("debug marker 2")
+        val drawing_width = computedStyle.width.dropRight(2).toInt // set coordinate system; width attribute only applies to <img>
         canvas_top_circuit.width = drawing_width
         canvas_bottom_circuit.width = drawing_width
-        val drawing_height = circuitDiv.style.height.dropRight(2).toInt
+        val drawing_height = computedStyle.height.dropRight(2).toInt
         canvas_top_circuit.height = drawing_height
         canvas_bottom_circuit.height = drawing_height
 
@@ -153,26 +148,27 @@ object BuckBoost {
 
     def setup_graph1(div1: html.Div, switch: Switch) = {
 
+        val computedStyle = dom.window.getComputedStyle(div1)
         val canvas_top_graph1 = canvas(
             id := "canvas_top_graph1",
             position := "absolute",
-            width := div1.style.width,
-            height := div1.style.height
+            width := computedStyle.width,
+            height := computedStyle.height
         )("Get a proper browser!").render
         val canvas_bottom_graph1 = canvas(
             id := "canvas_bottom_graph1",
             position := "absolute",
-            width := div1.style.width,
-            height := div1.style.height
+            width := computedStyle.width,
+            height := computedStyle.height
         )("Get a proper browser!").render
 
         div1.appendChild(canvas_bottom_graph1)
         div1.appendChild(canvas_top_graph1)
 
-        val drawing_width = div1.style.width.dropRight(2).toInt // set coordinate system; width attribute only applies to <img>
+        val drawing_width = computedStyle.width.dropRight(2).toInt // set coordinate system; width attribute only applies to <img>
         canvas_top_graph1.width = drawing_width
         canvas_bottom_graph1.width = drawing_width
-        val drawing_height = div1.style.height.dropRight(2).toInt
+        val drawing_height = computedStyle.height.dropRight(2).toInt
         canvas_top_graph1.height = drawing_height
         canvas_bottom_graph1.height = drawing_height
 
@@ -189,26 +185,27 @@ object BuckBoost {
 
     def setup_graph2(div: html.Div, graph: Graph1) = {
 
+        val computedStyle = dom.window.getComputedStyle(div)
         val canvas_top_graph1 = canvas(
             id := "canvas_top_graph2",
             position := "absolute",
-            width := div.style.width,
-            height := div.style.height
+            width := computedStyle.width,
+            height := computedStyle.height
         )("Get a proper browser!").render
         val canvas_bottom_graph1 = canvas(
             id := "canvas_bottom_graph2",
             position := "absolute",
-            width := div.style.width,
-            height := div.style.height
+            width := computedStyle.width,
+            height := computedStyle.height
         )("Get a proper browser!").render
 
         div.appendChild(canvas_bottom_graph1)
         div.appendChild(canvas_top_graph1)
 
-        val drawing_width = div.style.width.dropRight(2).toInt // set coordinate system; width attribute only applies to <img>
+        val drawing_width = computedStyle.width.dropRight(2).toInt // set coordinate system; width attribute only applies to <img>
         canvas_top_graph1.width = drawing_width
         canvas_bottom_graph1.width = drawing_width
-        val drawing_height = div.style.height.dropRight(2).toInt
+        val drawing_height = computedStyle.height.dropRight(2).toInt
         canvas_top_graph1.height = drawing_height
         canvas_bottom_graph1.height = drawing_height
 

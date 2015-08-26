@@ -5,11 +5,12 @@ import org.scalajs.dom.raw._
 
 import scala.scalajs.js
 import scala.scalajs.js.Date
+import scala.scalajs.js.annotation.JSExport
 import scalatags.JsDom.all._
 
 class LanguageSelector(div: HTMLDivElement) {
 
-    val languageTag = dom.document.createElement("span")
+    val languageTag = dom.document.createElement("span").asInstanceOf[HTMLSpanElement]
     private val xhr = new XMLHttpRequest()
     private val langSelector = select().render
     private var contentFile: Document = _
@@ -83,5 +84,13 @@ class LanguageSelector(div: HTMLDivElement) {
             optionsItem.value = content.item(index).attributes.getNamedItem("lang").value
             langSelector.add(optionsItem)
         }
+    }
+}
+
+@JSExport
+object LanguageSelector {
+    @JSExport
+    def main(div: HTMLDivElement): Unit = {
+        new LanguageSelector(div)
     }
 }
