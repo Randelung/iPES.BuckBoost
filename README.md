@@ -16,5 +16,5 @@ generated webpage/JavaScript documents will be available under a
 
 ## Viewing the Scaladoc
 
-To see the Scaladoc, open target/scala-2.11/api/index.html. To regenerate it in case I forget, type doc into the SBT
+To see the Scaladoc, open target/scala-2.11/api/index.html. To regenerate it in case I forget, type ```doc``` into the SBT
 console.
