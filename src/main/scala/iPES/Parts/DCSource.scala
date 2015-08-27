@@ -2,11 +2,24 @@ package iPES.Parts
 
 import iPES.Util._
 
+/**
+ * Basic DC source component.
+ * @param start			Start vector of component
+ * @param end			End vector of component
+ * @param animator		Animator in which to register itself
+ * @param inputHandler	Input handler in which to register itself. Can be omitted.
+ * @param width			Width of component. Default is 20px.
+ * @param lengthRatio	Length to width ratio. Default is 0.3.
+ */
 case class DCSource(start: Vector2D, end: Vector2D, animator: Animator, inputHandler: InputHandler = null, width: Double = 20, lengthRatio: Double = 0.3) extends Animatable {
     if (inputHandler != null)
         inputHandler registerArea(this, start - Vector2D(width / 2, width / 2), end + Vector2D(width / 2, width / 2))
     animator.register(this)
 
+    /**
+     * Draws basic double line DC source symbol.
+     * @param context	Context in which to draw
+     */
     override def draw(context: CustomContext): Unit = {
         val middle = (end + start) / 2
         val direction = (end - start) / (end - start).abs
@@ -40,6 +53,11 @@ case class DCSource(start: Vector2D, end: Vector2D, animator: Animator, inputHan
             .moveTo(end)
     }
 
+    /**
+     * Current direction is reversed for forward flow.
+     * @param context	Context in which to draw.
+     * @param tick		Tick counter for which to draw.
+     */
     override def animate(context: CustomContext, tick: Int): Unit = {
         if (flowDirection == FlowDirection.STOP)
             return

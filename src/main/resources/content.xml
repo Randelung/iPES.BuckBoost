@@ -19,7 +19,7 @@
             <br/>
             <b>Remark:</b>
             Here the output voltage is kept constant by the output voltage controller. Therefore,
-            changing the voltage transfer ratio u2/u1 does change the input voltage.
+            changing the voltage transfer ratio \(\frac{u2}{u1}\) does change the input voltage.
         </content>
         <content id="qna">
             <ol>
@@ -29,26 +29,26 @@
                         (Difficulty 1)
                         <br/>
                         <input type="radio" name="question1" id="answer1"
-                               onChange="iPES.BuckBoost.BuckBoost().checkAnswer1()">\(d = \frac{V_{in}}{V_{out}}\)
+                               onChange="iPES.BuckBoost.Questions().checkAnswer1()">\(d = \frac{V_{in}}{V_{out}}\)
                         </input>
                         <br/>
                         <input type="radio" name="question1" id="answer2"
-                               onChange="iPES.BuckBoost.BuckBoost().checkAnswer1()">\(d = \frac{V_{in}}{V_{out} -
+                               onChange="iPES.BuckBoost.Questions().checkAnswer1()">\(d = \frac{V_{in}}{V_{out} -
                             V_{in}}\)
                         </input>
                         <br/>
                         <input type="radio" name="question1" id="answer3"
-                               onChange="iPES.BuckBoost.BuckBoost().checkAnswer1()">\(d = \frac{V_{in}}{V_{out} +
+                               onChange="iPES.BuckBoost.Questions().checkAnswer1()">\(d = \frac{V_{in}}{V_{out} +
                             V_{in}}\)
                         </input>
                         <br/>
                         <input type="radio" name="question1" id="answer4"
-                               onChange="iPES.BuckBoost.BuckBoost().checkAnswer1()">\(d = \frac{V_{out}}{V_{out} -
+                               onChange="iPES.BuckBoost.Questions().checkAnswer1()">\(d = \frac{V_{out}}{V_{out} -
                             V_{in}}\)
                         </input>
                         <br/>
                         <input type="radio" name="question1" id="answer5"
-                               onChange="iPES.BuckBoost.BuckBoost().checkAnswer1()">\(d = \frac{V_{out}}{V_{out} -
+                               onChange="iPES.BuckBoost.Questions().checkAnswer1()">\(d = \frac{V_{out}}{V_{out} -
                             V_{in}}\)
                         </input>
                         <br/>
@@ -94,7 +94,7 @@
             <br/>
             <b>Anmerkung:</b>
             Hier wird die Ausgangsspannung durch den Ausgangsspannungs-Controller konstant gehalten.
-            Deshalb ändert eine Änderung am Spannungstransferverhältnis u2/u1 die Eingangsspannung.
+            Deshalb ändert eine Änderung am Spannungstransferverhältnis \(\frac{u2}{u1}\) die Eingangsspannung.
         </content>
         <content id="qna">
             <ol>
@@ -104,27 +104,27 @@
                         kontinuierlichen Modus)? (Schwierigkeitsstufe 1)
                         <br/>
                         <input type="radio" name="question1" id="answer1"
-                               onChange="iPES.BuckBoost.BuckBoost().checkAnswer1()">
+                               onChange="iPES.BuckBoost.Questions().checkAnswer1()">
                             \(d = \frac{V_{in}}{V_{out}}\)
                         </input>
                         <br/>
                         <input type="radio" name="question1" id="answer2"
-                               onChange="iPES.BuckBoost.BuckBoost().checkAnswer1()">
+                               onChange="iPES.BuckBoost.Questions().checkAnswer1()">
                             \(d = \frac{V_{in}}{V_{out} - V_{in}}\)
                         </input>
                         <br/>
                         <input type="radio" name="question1" id="answer3"
-                               onChange="iPES.BuckBoost.BuckBoost().checkAnswer1()">
+                               onChange="iPES.BuckBoost.Questions().checkAnswer1()">
                             \(d = \frac{V_{in}}{V_{out} + V_{in}}\)
                         </input>
                         <br/>
                         <input type="radio" name="question1" id="answer4"
-                               onChange="iPES.BuckBoost.BuckBoost().checkAnswer1()">
+                               onChange="iPES.BuckBoost.Questions().checkAnswer1()">
                             \(d = \frac{V_{out}}{V_{out} - V_{in}}\)
                         </input>
                         <br/>
                         <input type="radio" name="question1" id="answer5"
-                               onChange="iPES.BuckBoost.BuckBoost().checkAnswer1()">
+                               onChange="iPES.BuckBoost.Questions().checkAnswer1()">
                             \(d = \frac{V_{out}}{V_{out} - V_{in}}\)
                         </input>
                         <br/>

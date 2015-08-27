@@ -4,6 +4,12 @@ import org.scalajs.dom
 
 import scala.scalajs.js.Array
 
+/**
+ * Wrapper class for `org.scalajs.dom.CanvasRenderingContext2D` to support [[Vector2D]] and command chaining. direct access to the
+ * original context is possible using the argument `context`, or the member `canvas`. See documentation of
+ * CanvasRedneringContext2D for usage details.
+ * @param context   Usual canvas context.
+ */
 case class CustomContext(context: dom.CanvasRenderingContext2D) {
 
     def lineTo(that: Vector2D): CustomContext = {

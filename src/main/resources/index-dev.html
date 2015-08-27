@@ -14,15 +14,13 @@
 		<div id = "Graph2"></div>
 		<div id = "qna"></div>
 		<script type = "text/javascript" src = "../buckboost-converter-fastopt.js"></script>
-		<script type = "text/javascript" src = "http://cdn.jsdelivr.net/jquery/2.1.1/jquery.js"></script>
 		<script src = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 		<!--script type="text/javascript" src="/workbench.js"></script-->
 		<script>
-			iPES.BuckBoost.BuckBoost().main(document.getElementById("Circuit"),
-											document.getElementById("Graph1"),
-											document.getElementById("Graph2"));
+			iPES.BuckBoost.Diagrams().main(document.getElementById("Circuit"),
+										   document.getElementById("Graph1"),
+										   document.getElementById("Graph2"));
 			iPES.Webpage.LanguageSelector().main(document.getElementById("LanguageSelector"));
-
 		</script>
 	</body>
 </html>
