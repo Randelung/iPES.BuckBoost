@@ -1,0 +1,229 @@
+<!DOCTYPE html >
+<html>
+        <head>
+          <title>Parts - iPES.Parts</title>
+          <meta name="description" content="Parts - iPES.Parts" />
+          <meta name="keywords" content="Parts iPES.Parts" />
+          <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+          
+      <link href="../../lib/template.css" media="screen" type="text/css" rel="stylesheet" />
+      <link href="../../lib/diagrams.css" media="screen" type="text/css" rel="stylesheet" id="diagrams-css" />
+      <script type="text/javascript" src="../../lib/jquery.js" id="jquery-js"></script>
+      <script type="text/javascript" src="../../lib/jquery-ui.js"></script>
+      <script type="text/javascript" src="../../lib/template.js"></script>
+      <script type="text/javascript" src="../../lib/tools.tooltip.js"></script>
+      
+      <script type="text/javascript">
+         if(top === self) {
+            var url = '../../index.html';
+            var hash = 'iPES.Parts.package';
+            var anchor = window.location.hash;
+            var anchor_opt = '';
+            if (anchor.length >= 1)
+              anchor_opt = '@' + anchor.substring(1);
+            window.location.href = url + '#' + hash + anchor_opt;
+         }
+   	  </script>
+    
+        </head>
+        <body class="value">
+      <div id="definition">
+        <img src="../../lib/package_big.png" />
+        <p id="owner"><a href="../package.html" class="extype" name="iPES">iPES</a></p>
+        <h1>Parts</h1><span class="permalink">
+      <a href="../../index.html#iPES.Parts.package" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      </div>
+
+      <h4 id="signature" class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">package</span>
+      </span>
+      <span class="symbol">
+        <span class="name">Parts</span>
+      </span>
+      </h4>
+      
+          <div id="comment" class="fullcommenttop"></div>
+        
+
+      <div id="mbrsel">
+        <div id="textfilter"><span class="pre"></span><span class="input"><input id="mbrsel-input" type="text" accesskey="/" /></span><span class="post"></span></div>
+        
+        
+        <div id="visbl">
+            <span class="filtertype">Visibility</span>
+            <ol><li class="public in"><span>Public</span></li><li class="all out"><span>All</span></li></ol>
+          </div>
+      </div>
+
+      <div id="template">
+        <div id="allMembers">
+        
+
+        <div id="types" class="types members">
+              <h3>Type Members</h3>
+              <ol><li name="iPES.Parts.Capacitor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="CapacitorextendsAnimatablewithProductwithSerializable"></a>
+      <a id="Capacitor:Capacitor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Capacitor.html"><span class="name">Capacitor</span></a><span class="params">(<span name="start">start: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="end">end: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="animator">animator: <a href="../Util/Animator.html" class="extype" name="iPES.Util.Animator">Animator</a></span>, <span name="inputHandler">inputHandler: <a href="../Util/InputHandler.html" class="extype" name="iPES.Util.InputHandler">InputHandler</a> = <span class="symbol">null</span></span>, <span name="width">width: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">40</span></span>, <span name="lengthRatio">lengthRatio: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.2</span></span>)</span><span class="result"> extends <a href="../Util/Animatable.html" class="extype" name="iPES.Util.Animatable">Animatable</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#iPES.Parts.package@CapacitorextendsAnimatablewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Basic capacitor component.</p><div class="fullcomment"><div class="comment cmt"><p>Basic capacitor component.</p></div><dl class="paramcmts block"><dt class="param">start</dt><dd class="cmt"><p>Start vector of component</p></dd><dt class="param">end</dt><dd class="cmt"><p>End vector of component</p></dd><dt class="param">animator</dt><dd class="cmt"><p>Animator in which to register itself</p></dd><dt class="param">inputHandler</dt><dd class="cmt"><p>Input handler in which to register itself. Can be omitted.</p></dd><dt class="param">width</dt><dd class="cmt"><p>Width of component. Default is 40px.</p></dd><dt class="param">lengthRatio</dt><dd class="cmt"><p>Length to width ratio. Default is 0.2.
+</p></dd></dl></div>
+    </li><li name="iPES.Parts.DCSource" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="DCSourceextendsAnimatablewithProductwithSerializable"></a>
+      <a id="DCSource:DCSource"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="DCSource.html"><span class="name">DCSource</span></a><span class="params">(<span name="start">start: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="end">end: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="animator">animator: <a href="../Util/Animator.html" class="extype" name="iPES.Util.Animator">Animator</a></span>, <span name="inputHandler">inputHandler: <a href="../Util/InputHandler.html" class="extype" name="iPES.Util.InputHandler">InputHandler</a> = <span class="symbol">null</span></span>, <span name="width">width: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">20</span></span>, <span name="lengthRatio">lengthRatio: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">0.3</span></span>)</span><span class="result"> extends <a href="../Util/Animatable.html" class="extype" name="iPES.Util.Animatable">Animatable</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#iPES.Parts.package@DCSourceextendsAnimatablewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Basic DC source component.</p><div class="fullcomment"><div class="comment cmt"><p>Basic DC source component.</p></div><dl class="paramcmts block"><dt class="param">start</dt><dd class="cmt"><p>Start vector of component</p></dd><dt class="param">end</dt><dd class="cmt"><p>End vector of component</p></dd><dt class="param">animator</dt><dd class="cmt"><p>Animator in which to register itself</p></dd><dt class="param">inputHandler</dt><dd class="cmt"><p>Input handler in which to register itself. Can be omitted.</p></dd><dt class="param">width</dt><dd class="cmt"><p>Width of component. Default is 20px.</p></dd><dt class="param">lengthRatio</dt><dd class="cmt"><p>Length to width ratio. Default is 0.3.
+</p></dd></dl></div>
+    </li><li name="iPES.Parts.Diode" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="DiodeextendsAnimatablewithProductwithSerializable"></a>
+      <a id="Diode:Diode"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Diode.html"><span class="name">Diode</span></a><span class="params">(<span name="start">start: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="end">end: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="animator">animator: <a href="../Util/Animator.html" class="extype" name="iPES.Util.Animator">Animator</a></span>, <span name="inputHandler">inputHandler: <a href="../Util/InputHandler.html" class="extype" name="iPES.Util.InputHandler">InputHandler</a> = <span class="symbol">null</span></span>, <span name="width">width: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">20</span></span>)</span><span class="result"> extends <a href="../Util/Animatable.html" class="extype" name="iPES.Util.Animatable">Animatable</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#iPES.Parts.package@DiodeextendsAnimatablewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Basic diode component.</p><div class="fullcomment"><div class="comment cmt"><p>Basic diode component.</p></div><dl class="paramcmts block"><dt class="param">start</dt><dd class="cmt"><p>Start vector of component</p></dd><dt class="param">end</dt><dd class="cmt"><p>End vector of component</p></dd><dt class="param">animator</dt><dd class="cmt"><p>Animator in which to register itself</p></dd><dt class="param">inputHandler</dt><dd class="cmt"><p>Input handler in which to register itself. Can be omitted.</p></dd><dt class="param">width</dt><dd class="cmt"><p>Width of diode. Default value is 20px.
+</p></dd></dl></div>
+    </li><li name="iPES.Parts.Inductor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="InductorextendsAnimatablewithProductwithSerializable"></a>
+      <a id="Inductor:Inductor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Inductor.html"><span class="name">Inductor</span></a><span class="params">(<span name="start">start: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="end">end: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="animator">animator: <a href="../Util/Animator.html" class="extype" name="iPES.Util.Animator">Animator</a></span>, <span name="inputHandler">inputHandler: <a href="../Util/InputHandler.html" class="extype" name="iPES.Util.InputHandler">InputHandler</a> = <span class="symbol">null</span></span>, <span name="width">width: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">20</span></span>, <span name="lengthRatio">lengthRatio: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">2</span></span>)</span><span class="result"> extends <a href="../Util/Animatable.html" class="extype" name="iPES.Util.Animatable">Animatable</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#iPES.Parts.package@InductorextendsAnimatablewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Basic inductor component.</p><div class="fullcomment"><div class="comment cmt"><p>Basic inductor component.</p></div><dl class="paramcmts block"><dt class="param">start</dt><dd class="cmt"><p>Start vector of component</p></dd><dt class="param">end</dt><dd class="cmt"><p>End vector of component</p></dd><dt class="param">animator</dt><dd class="cmt"><p>Animator in which to register itself</p></dd><dt class="param">inputHandler</dt><dd class="cmt"><p>Input handler in which to register itself. Can be omitted.</p></dd><dt class="param">width</dt><dd class="cmt"><p>Width of component. Default is 20px.</p></dd><dt class="param">lengthRatio</dt><dd class="cmt"><p>Length to width ratio. Default is 2.
+</p></dd></dl></div>
+    </li><li name="iPES.Parts.Resistor" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="ResistorextendsAnimatablewithProductwithSerializable"></a>
+      <a id="Resistor:Resistor"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Resistor.html"><span class="name">Resistor</span></a><span class="params">(<span name="start">start: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="end">end: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="animator">animator: <a href="../Util/Animator.html" class="extype" name="iPES.Util.Animator">Animator</a></span>, <span name="inputHandler">inputHandler: <a href="../Util/InputHandler.html" class="extype" name="iPES.Util.InputHandler">InputHandler</a> = <span class="symbol">null</span></span>, <span name="width">width: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">20</span></span>, <span name="lengthRatio">lengthRatio: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">2</span></span>)</span><span class="result"> extends <a href="../Util/Animatable.html" class="extype" name="iPES.Util.Animatable">Animatable</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#iPES.Parts.package@ResistorextendsAnimatablewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Basic resistor component.</p><div class="fullcomment"><div class="comment cmt"><p>Basic resistor component.</p></div><dl class="paramcmts block"><dt class="param">start</dt><dd class="cmt"><p>Start vector of component</p></dd><dt class="param">end</dt><dd class="cmt"><p>End vector of component</p></dd><dt class="param">animator</dt><dd class="cmt"><p>Animator in which to register itself</p></dd><dt class="param">inputHandler</dt><dd class="cmt"><p>Input handler in which to register itself. Can be omitted.</p></dd><dt class="param">width</dt><dd class="cmt"><p>Width of resistor. Default is 20px.</p></dd><dt class="param">lengthRatio</dt><dd class="cmt"><p>Length to width ratio. Default is 2.
+</p></dd></dl></div>
+    </li><li name="iPES.Parts.Switch" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="SwitchextendsAnimatablewithProductwithSerializable"></a>
+      <a id="Switch:Switch"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Switch.html"><span class="name">Switch</span></a><span class="params">(<span name="start">start: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="end">end: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="animator">animator: <a href="../Util/Animator.html" class="extype" name="iPES.Util.Animator">Animator</a></span>, <span name="inputHandler">inputHandler: <a href="../Util/InputHandler.html" class="extype" name="iPES.Util.InputHandler">InputHandler</a> = <span class="symbol">null</span></span>, <span name="closed">closed: <span class="extype" name="scala.Boolean">Boolean</span> = <span class="symbol">true</span></span>, <span name="length">length: <span class="extype" name="scala.Double">Double</span> = <span class="symbol">20</span></span>)</span><span class="result"> extends <a href="../Util/Animatable.html" class="extype" name="iPES.Util.Animatable">Animatable</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#iPES.Parts.package@SwitchextendsAnimatablewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Basic switch component.</p><div class="fullcomment"><div class="comment cmt"><p>Basic switch component.</p></div><dl class="paramcmts block"><dt class="param">start</dt><dd class="cmt"><p>Start vector of switch</p></dd><dt class="param">end</dt><dd class="cmt"><p>End vector of switch</p></dd><dt class="param">animator</dt><dd class="cmt"><p>Animator, in which to register itself</p></dd><dt class="param">inputHandler</dt><dd class="cmt"><p>Input handler, in which to register itself. Can be omitted, but is not recommended, since a
+                    	switch is an active component.</p></dd><dt class="param">closed</dt><dd class="cmt"><p>Initial (and current) state of switch. Default is closed/conducting.</p></dd><dt class="param">length</dt><dd class="cmt"><p>Length of switch piece itself. Default is 20 pixels.
+</p></dd></dl></div>
+    </li><li name="iPES.Parts.Wire" visbl="pub" data-isabs="false" fullComment="yes" group="Ungrouped">
+      <a id="WireextendsAnimatablewithProductwithSerializable"></a>
+      <a id="Wire:Wire"></a>
+      <h4 class="signature">
+      <span class="modifier_kind">
+        <span class="modifier"></span>
+        <span class="kind">case class</span>
+      </span>
+      <span class="symbol">
+        <a href="Wire.html"><span class="name">Wire</span></a><span class="params">(<span name="start">start: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="end">end: <a href="../Util/Vector2D.html" class="extype" name="iPES.Util.Vector2D">Vector2D</a></span>, <span name="animator">animator: <a href="../Util/Animator.html" class="extype" name="iPES.Util.Animator">Animator</a></span>, <span name="inputHandler">inputHandler: <a href="../Util/InputHandler.html" class="extype" name="iPES.Util.InputHandler">InputHandler</a> = <span class="symbol">null</span></span>)</span><span class="result"> extends <a href="../Util/Animatable.html" class="extype" name="iPES.Util.Animatable">Animatable</a> with <span class="extype" name="scala.Product">Product</span> with <span class="extype" name="scala.Serializable">Serializable</span></span>
+      </span>
+      </h4><span class="permalink">
+      <a href="../../index.html#iPES.Parts.package@WireextendsAnimatablewithProductwithSerializable" title="Permalink" target="_top">
+        <img src="../../lib/permalink.png" />
+      </a>
+    </span>
+      <p class="shortcomment cmt">Most basic component.</p><div class="fullcomment"><div class="comment cmt"><p>Most basic component. Since trait already includes the basic drawing and animation methods, they don't need to be
+overridden.</p></div><dl class="paramcmts block"><dt class="param">start</dt><dd class="cmt"><p>Start vector of wire piece</p></dd><dt class="param">end</dt><dd class="cmt"><p>End vector of wire piece</p></dd><dt class="param">animator</dt><dd class="cmt"><p>Animator, in which to register itself</p></dd><dt class="param">inputHandler</dt><dd class="cmt"><p>Input handler, in which to register itself. Can be omitted.
+</p></dd></dl></div>
+    </li></ol>
+            </div>
+
+        
+
+        
+
+        
+
+        
+        </div>
+
+        <div id="inheritedMembers">
+        
+        
+        </div>
+
+        <div id="groupedMembers">
+        <div class="group" name="Ungrouped">
+              <h3>Ungrouped</h3>
+              
+            </div>
+        </div>
+
+      </div>
+
+      <div id="tooltip"></div>
+
+      <div id="footer">  </div>
+
+
+    </body>
+      </html>
