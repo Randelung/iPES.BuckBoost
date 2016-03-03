@@ -10,7 +10,7 @@ name := "BuckBoost Converter"
 
 version := "0.1-SNAPSHOT"
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.7"
 
 bootSnippet := "iPES.BuckBoost.BuckBoost().main();"
 
